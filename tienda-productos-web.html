@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AhorroMax - Calidad que ahorra, precios que sorprenden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navegación */
+        nav {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #f97316;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.6);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Secciones */
+        section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e40af;
+        }
+
+        /* Productos */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .producto-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .producto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .producto-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .producto-content {
+            padding: 1.5rem;
+        }
+
+        .producto-content h3 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .producto-content p {
+            color: #666;
+        }
+
+        /* Acerca de */
+        #acerca {
+            background: #f8fafc;
+        }
+
+        .acerca-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .acerca-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .valores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .valor {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .valor-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .valor h3 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contacto */
+        .contacto-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: #f97316;
+            color: white;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: #f97316;
+            color: white;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+        }
+
+        .info-contacto {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item h3 {
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .info-item p {
+            color: #475569;
+        }
+
+        .mapa {
+            margin-top: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .mapa iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 20px 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f97316;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .redes-sociales {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1e40af;
+                padding: 1rem;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .contacto-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav>
+        <div class="container">
+            <div class="logo">🛒 AhorroMax</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#acerca">Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>Calidad que ahorra, precios que sorprenden</h1>
+            <p>Tu tienda de confianza con los mejores precios del mercado</p>
+            <a href="#productos" class="cta-button">Ver Productos</a>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section id="productos">
+        <div class="container">
+            <h2>Nuestros Productos</h2>
+            <div class="productos-grid">
+                <div class="producto-card">
+                    <div class="producto-img">🧼</div>
+                    <div class="producto-content">
+                        <h3>Productos de Limpieza</h3>
+                        <p>Todo lo que necesitas para mantener tu hogar impecable a precios increíbles</p>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-img">🥫</div>
+                    <div class="producto-content">
+                        <h3>Enlatados</h3>
+                        <p>Productos en conserva de calidad para tu despensa, siempre frescos</p>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-img">🌾</div>
+                    <div class="producto-content">
+                        <h3>Abarrotes</h3>
+                        <p>Granos, cereales, pastas y todo lo esencial para tu cocina</p>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-img">🥤</div>
+                    <div class="producto-content">
+                        <h3>Bebidas</h3>
+                        <p>Refrescos, jugos y bebidas para toda la familia al mejor precio</p>
+                    </div>
+                </div>
+
+                <div class="producto-card">
+                    <div class="producto-img">🧴</div>
+                    <div class="producto-content">
+                        <h3>Higiene Personal</h3>
+                        <p>Cuidado personal de calidad sin gastar de más</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acerca de -->
+    <section id="acerca">
+        <div class="container">
+            <h2>Acerca de Nosotros</h2>
+            <div class="acerca-content">
+                <p>Somos una empresa familiar con más de 10 años de experiencia, comprometida en ofrecer productos de calidad a precios justos para toda la comunidad.</p>
+                <p>Nuestro objetivo es que cada familia pueda acceder a productos cotidianos sin afectar su presupuesto. Creemos que el ahorro y la calidad pueden ir de la mano.</p>
+                <p>Trabajamos directamente con proveedores confiables para garantizar los mejores precios del mercado, y ese ahorro lo compartimos contigo.</p>
+            </div>
+
+            <div class="valores">
+                <div class="valor">
+                    <div class="valor-icon">💰</div>
+                    <h3>Precios Bajos</h3>
+                    <p>Siempre al mejor precio</p>
+                </div>
+                <div class="valor">
+                    <div class="valor-icon">✨</div>
+                    <h3>Calidad</h3>
+                    <p>Productos de primera</p>
+                </div>
+                <div class="valor">
+                    <div class="valor-icon">🤝</div>
+                    <h3>Confianza</h3>
+                    <p>Atención personalizada</p>
+                </div>
+                <div class="valor">
+                    <div class="valor-icon">❤️</div>
+                    <h3>Comunidad</h3>
+                    <p>Comprometidos contigo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <div class="contacto-wrapper">
+                <div class="info-contacto" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
+                    <div class="info-item">
+                        <h3>📍 Dirección</h3>
+                        <p>Av. Principal #123, Santiago, Chile</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>📞 Teléfono</h3>
+                        <p>+56 9 8765 4321</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>⏰ Horario</h3>
+                        <p>Lunes a Viernes: 9:00 - 20:00</p>
+                        <p>Sábados: 9:00 - 18:00</p>
+                        <p>Domingos: 10:00 - 14:00</p>
+                    </div>
+
+                    <div class="mapa">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.003168103554!2d-70.66926492346408!3d-33.44277849999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a36b4c1de9%3A0x89c993bc3bbe77a2!2sSantiago%2C%20Regi%C3%B3n%20Metropolitana%2C%20Chile!5e0!3m2!1ses!2scl!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>AhorroMax</h3>
+                <p>Tu aliado en ahorro y calidad</p>
+                <div class="redes-sociales">
+                    <a href="#" style="color: white;">📘</a>
+                    <a href="#" style="color: white;">📷</a>
+                    <a href="#" style="color: white;">🐦</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#acerca">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Productos</h3>
+                <ul>
+                    <li><a href="#productos">Limpieza</a></li>
+                    <li><a href="#productos">Enlatados</a></li>
+                    <li><a href="#productos">Abarrotes</a></li>
+                    <li><a href="#productos">Bebidas</a></li>
+                    <li><a href="#productos">Higiene Personal</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>📍 Av. Principal #123, Santiago</p>
+                <p>📞 +56 9 8765 4321</p>
+                <p>✉️ info@ahorromax.cl</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 AhorroMax. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const menu = document.getElementById('navMenu');
+                    menu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
